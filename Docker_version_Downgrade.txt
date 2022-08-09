@@ -1,0 +1,37 @@
+then sudo apt-cache policy docker-engine this will show the list of docker packages available
+
+docker-engine:
+  Installed: 17.03.1~ce-0~raspbian-jessie
+  Candidate: 17.05.0~ce-0~raspbian-jessie
+  Version table:
+     17.05.0~ce-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     17.04.0~ce-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+ *** 17.03.1~ce-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+        100 /var/lib/dpkg/status
+     17.03.0~ce-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     1.13.1-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     1.13.0-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     1.12.6-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     1.12.5-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     1.12.4-0~raspbian-jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     1.12.3-0~jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     1.12.2-0~jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+     1.12.1-0~jessie 0
+        500 https://apt.dockerproject.org/repo/ raspbian-jessie/main armhf Packages
+Choose the package you want to downgrade to and do the installation
+
+sudo apt-get install -y docker-engine=1.12.6-0~raspbian-jessie
+
+
+
