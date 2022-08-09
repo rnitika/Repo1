@@ -1,0 +1,90 @@
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg|sudo apt-key add -  --> FOR GPG KEY
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ 
+$(lsb_release -cs) \ 
+stable" --> adding docker repo
+sudo apt-get update
+sudo apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu  ->>installing docker 
+
+sudo apt-mark hold docker-ce --> will not upgrades docker versions.
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg| sudo apt-key add - -->for gpg key of kubernetes repo
+
+adding kubernetes repo
+cat << EOF |sudo tee /etc/apt/sources.list.d/kubernetes.list 
+deb https://apt.kubernetes.io/ kubernetes-xenial main 
+EOF
+
+sudo apt-get update
+
+install packages
+sudo apt-get install -y kubelet kubeadm kubectl
+
+prevent auto updates for kube packages
+sudo apt-mark hold kubelet kubeadm kubectl
+done
+
+bootstrapping cluster
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+Troubleshoot
+Note: but install docker ce, cli,container from office website
+
+rm /etc/containerd/config.toml
+systemctl restart containerd
+kubeadm init --pod-network-cidr=10.244.0.0/16
+
+
+configure networking with flannel
+echo "net.bridge.bridge-nf-call-iptables=1"|sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+run above commands on all 3 nodes
+
+and finally run below command on master
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+kubectl get nodes
+kubectl get pods -n kube-system
+
+
+kubeadm join 192.168.129.138:6443 --token j7i9m8.esg8ap6x8lykiv7i --discovery-token-ca-cert-hash sha256:abf3802c5657837112ca5aa84e4990b271b06d9cd260d15987ecda6ecc2653d5 
+
+
+
+##########################################################FOR RESET####################################################################################
+
+
+
+1.docker
+2.containerd
+3.kubelet
+
+service
+systemctl |start enable
+
+kubeadm reset --force
+cd /etc/kubernetes/ 
+manifests pki
+cd $HOME/.kube
+rm -r *
+
+
+cd /opt/cni/bin
+flannel
+rm -rf flannel
+
+cd /var/lib
+rm -r etcd
+
+
+sudo sysctl -p
+   70  clear
+   71  curl https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   72  ls
+   73  wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   74  clear
+   75  ls
+
+kubectl apply -f kube-flannel.yml
+##########################################################PORTS#########################################################################################
+
+https://kubernetes.io/docs/reference/ports-and-protocols/
