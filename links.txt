@@ -1,0 +1,6 @@
+Useful links 
+Training Presentation: DevTestOps-Maven_build_tool.pdf
+
+Official Maven project website: http://maven.apache.org/
+
+Central maven repository for searching libraries: https://search.maven.org/
